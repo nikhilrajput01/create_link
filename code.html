@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tempreture converter</title>
+  <style>
+  h1{
+    display: none;
+  }
+  </style>
+</head>
+<body>
+    <div id="temprature">
+        <input type="number" id="input">
+        <select id="convert-from">
+            <option value="celsius" >celsius</option>
+            <option value="kelvin">kelvin</option>
+            <option value="fahrenheit">fahrenheit</option>
+        </select>
+        <select  id="convert-to">
+            <option value="celsius">celsius</option>
+            <option value="kelvin">kelvin</option>
+            <option value="fahrenheit">fahrenheit</option>
+        </select>
+        <button class="btn">converted</button>
+        <h1 class="result">hii</h1>
+    </div>
+    <script>
+        let btn =document.getElementsByClassName("btn")[0]
+        let result=document.getElementsByClassName('result')[0]
+        function temp() {
+            let convertfrom=document.getElementById('convert-from').value
+            let convertto=document.getElementById('convert-to').value
+            let kop=parseFloat(document.getElementById('input').value)
+
+
+        let res;
+
+            if(convertfrom===convertto){
+                res=kop
+            }
+
+            else if (convertfrom==='celsius' && convertto==='kelvin') {
+                 res=kop +273.15
+            } 
+            else if (convertfrom==='celsius' && convertto==='fahrenheit') {
+                 res=(kop*9/5)+32
+            } 
+            else if (convertfrom==='fahrenheit' && convertto==='kelvin') {
+                 res=((kop-32)*5/9) +273.15
+            } 
+            else if (convertfrom==='fahrenheit' && convertto==='celsius') {
+                 res=(kop -32)*5/9
+            } 
+            else if (convertfrom==='kelvin' && convertto==='fahrenheit') {
+                res=((kop - 273.15) * 9/5) + 32
+            } 
+            else if (convertfrom==='kelvin' && convertto==='celsius') {
+                res=kop-273.15
+            } 
+
+            result.innerHTML=`Conveted temperature is ${res.toFixed(2)}° ${convertto}`
+            }
+            temp()
+            btn.addEventListener('click',()=>{
+            result.style.display='block'
+            temp()
+        })
+        // console.log(kop)
+    </script>
+</body>
+</html>
